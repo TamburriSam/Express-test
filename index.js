@@ -3,15 +3,17 @@ const express = require("express");
 const path = require("path");
 const app = express();
 //date/time library
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 const logger = require("./middleware/logger");
+const secondLogger = require("./middleware/secondlogger");
 
 //body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //init middleware
 //so everytime this app runs= whatever is defined here will happen
-//app.use(logger);
+app.use(logger);
+app.use(secondLogger);
 
 //this is a route
 app.get("/", (req, res) => {
